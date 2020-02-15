@@ -1,4 +1,4 @@
-# culqi_flutter
+# flutter_culqi
 
 A [Flutter Package]() to allow the integration of Android/iOS apps with the [Culqi API](https://www.culqi.com/docs/#/).
 
