@@ -4,6 +4,7 @@ enum ErrorType{
   InvalidKey,
   InvalidCard,
   ServerValidationFailed,
+  ExceptionTrowed
 }
 
 class CulqiError extends CulqiResponse{
@@ -11,11 +12,13 @@ class CulqiError extends CulqiResponse{
   ErrorType _errorType;
   int _errorCode;
   String _errorMessage;
+  Exception _exception;
 
-  CulqiError.fromType(ErrorType errorType, {errorCode=-1, errorMessage='Unknown Error'}){
+  CulqiError.fromType(ErrorType errorType, {errorCode=-1, errorMessage='Unknown Error', exception}){
     _errorType = errorType;
     _errorCode = errorCode;
     _errorMessage = errorMessage;
+    _exception = exception;
   }
 
   CulqiError.fromJson(Map<String, dynamic> response, int errorCode){
@@ -27,6 +30,7 @@ class CulqiError extends CulqiResponse{
   ErrorType get errorType     => _errorType;
   int get errorCode     => _errorCode;
   String get errorMessage  => _errorMessage;
+  Exception get exception => _exception;
 
   @override
   String toString() {

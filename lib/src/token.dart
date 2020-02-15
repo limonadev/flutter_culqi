@@ -35,8 +35,8 @@ class CulqiTokenizer{
     try{
       response = await http.post(tokenUrl, body: json.encode(body), headers: headers);
     }catch (e){
-      print('Exception ocurred: $e');
-      return CulqiError.fromType(ErrorType.ServerValidationFailed, errorMessage: e.toString(), errorCode: -2);
+      print('Exception ocurred: ${e.runtimeType}');
+      return CulqiError.fromType(ErrorType.ExceptionTrowed, errorMessage: e.toString(), errorCode: -2, exception: e);
     }
 
     if(response.statusCode == 201) return CulqiToken.fromJson(json.decode(response.body));
