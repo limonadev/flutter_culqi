@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'package:culqi_flutter/src/card.dart';
-import 'package:culqi_flutter/src/culqi_response.dart';
+import 'package:flutter_culqi/src/card.dart';
+import 'package:flutter_culqi/src/culqi_response.dart';
 
 class CulqiTokenizer{
 
@@ -31,7 +31,13 @@ class CulqiTokenizer{
     };
 
     final tokenUrl = baseUrl+'/tokens/';
-    var response = await http.post(tokenUrl, body: json.encode(body), headers: headers);
+    var response;
+    try{
+      response = await http.post(tokenUrl, body: json.encode(body), headers: headers);
+    }catch (e){
+      print('Exception ocurred: $e');
+      return CulqiError.fromType(ErrorType.ServerValidationFailed, errorMessage: e.toString(), errorCode: -2);
+    }
 
     if(response.statusCode == 201) return CulqiToken.fromJson(json.decode(response.body));
     else return CulqiError.fromJson(json.decode(response.body), response.statusCode);

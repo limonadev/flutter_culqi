@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:culqi_flutter/culqi_flutter.dart';
+import 'package:flutter_culqi/flutter_culqi.dart';
 
 
 /// You need to paste your Culqi public key here

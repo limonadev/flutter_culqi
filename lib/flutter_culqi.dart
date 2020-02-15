@@ -1,4 +1,4 @@
-library culqi_flutter;
+library flutter_culqi;
 
 export 'src/culqi_payment_widget.dart';
 export 'src/card.dart';

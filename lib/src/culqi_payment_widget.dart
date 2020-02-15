@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:culqi_flutter/src/card.dart';
-import 'package:culqi_flutter/src/internationalization/translation.dart';
+import 'package:flutter_culqi/src/card.dart';
+import 'package:flutter_culqi/src/internationalization/translation.dart';
 
 class CulqiPayment extends StatefulWidget {
 
