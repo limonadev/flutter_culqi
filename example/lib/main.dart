@@ -1,7 +1,9 @@
-import 'package:culqi_flutter/culqi_response.dart';
+import 'package:culqi_flutter/src/culqi_response.dart';
 import 'package:flutter/material.dart';
 
 import 'package:culqi_flutter/culqi_flutter.dart';
+
+final String _publicKey = 'INSERT_YOUR_PUBLIC_KEY_HERE';
 
 void main() => runApp(MyApp());
 
@@ -13,17 +15,17 @@ class MyApp extends StatelessWidget {
         cvv: '123',
         expirationMonth: 9,
         expirationYear: 2020,
-        email:'alrus2797@gmai.com'
+        email:'test@testmail.com'
     );
 
     CulqiTokenizer tokenizer = CulqiTokenizer(card);
 
-    /*var result = await tokenizer.getToken(publicKey: 'pk_test_juKtZ4MFGEHRVGdl');
+    var result = await tokenizer.getToken(publicKey: _publicKey);
     if(result is CulqiToken){
       print(result);
     }else if(result is CulqiError){
       print(result);
-    }*/
+    }
 
   }
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Culqi Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -66,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: <Widget>[
-          CulqiPayment(_key, locale: 'en'),
+          CulqiPayment(_key, locale: 'en', years: [2020, 2021, 2022, 2023, 2024],),
           ListTile(
             title: Text('Email', style: TextStyle(fontSize: 12),),
             subtitle: TextField(
@@ -101,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       CulqiTokenizer _tokenizer = CulqiTokenizer(_card);
 
-      var result = await _tokenizer.getToken(publicKey: 'pk_test_juKtZ4MFGEHRVGdl');
+      var result = await _tokenizer.getToken(publicKey: _publicKey);
       if(result is CulqiToken){
         setState(() {
           _token = result.token;

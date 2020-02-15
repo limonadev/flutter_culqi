@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'package:culqi_flutter/card.dart';
-import 'package:culqi_flutter/culqi_response.dart';
+import 'package:culqi_flutter/src/card.dart';
+import 'package:culqi_flutter/src/culqi_response.dart';
 
 class CulqiTokenizer{
 

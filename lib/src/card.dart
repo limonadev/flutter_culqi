@@ -1,10 +1,3 @@
-enum CardType {
-  Visa,
-  MasterCard,
-  AmericanExpress,
-  DinersClub
-}
-
 class CulqiCard{
   String cardNumber;
   String cvv;
