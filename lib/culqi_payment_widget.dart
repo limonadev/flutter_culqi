@@ -10,10 +10,7 @@ class CulqiPayment extends StatefulWidget {
   final String locale;
   final List<int> years;
 
-  CulqiPayment(Key key, {this.locale : Translations.defaultLocale, this.years : const [2020, 2021, 2022, 2023, 2024, 2025]}) : super(key:key){
-    print(this.locale);
-    print(this.years);
-  }
+  CulqiPayment(Key key, {this.locale : Translations.defaultLocale, this.years : const [2020, 2021, 2022, 2023, 2024, 2025]}) : super(key:key);
 
   @override
   CulqiPaymentState createState() {
@@ -49,154 +46,139 @@ class CulqiPaymentState extends State<CulqiPayment> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-              child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(50),
-                    bottomLeft: Radius.circular(50)),
-                color: Colors.white),
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Form(
-                key: _formKey,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    ListTile(
-                        title: Text(
-                          Translations.cardNumberLabel(widget.locale),
-                          style: TextStyle(fontSize: 12),
-                        ),
-                        subtitle: TextFormField(
-                          cursorColor: Colors.black,
-                          textInputAction: TextInputAction.done,
-                          style: TextStyle(color: Colors.black, fontSize: 16),
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 15),
-                              hintText: "XXXX - XXXX - XXXX - XXXX"),
-                          onFieldSubmitted: (value) {},
-                          validator: (value) {
-                            if (value.isEmpty) return Translations.emptyWarningLabel(widget.locale);
-                            _cardNumber = value;
-                            return null;
-                          },
-                        )),
-                    Container(
-                      height: 10,
-                    ),
-                    ListTile(
-                        title: Text(
-                          Translations.expirationMonthLabel(widget.locale),
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      subtitle: GestureDetector(
-                        child: Container(
-                            height: 45,
-                            alignment: Alignment.center,
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Text(
-                                      _months[_selectedMonth]),
-                                ),
-                                Icon(Icons.arrow_drop_down)
-                              ],
-                            )),
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext builder) {
-                                return Container(
-                                  child: CupertinoPicker(
-                                    itemExtent: 35.0,
-                                    onSelectedItemChanged:
-                                        (value) {
-                                      setState(() {
-                                        _selectedMonth = value;
-                                      });
-                                    },
-                                    children: _buildMonths(),
-                                    looping: true,
-                                    backgroundColor:
-                                    Colors.white,
-                                  ),
-                                );
-                              });
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        Translations.expirationYearLabel(widget.locale),
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      subtitle: GestureDetector(
-                        child: Container(
-                          height: 45,
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                  child: Text(
-                                      "${_years[_selectedYear]}")),
-                              Icon(Icons.arrow_drop_down)
-                            ],
+      child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                  title: Text(
+                    Translations.cardNumberLabel(widget.locale),
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  subtitle: TextFormField(
+                    cursorColor: Colors.black,
+                    textInputAction: TextInputAction.done,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        contentPadding:
+                        EdgeInsets.symmetric(vertical: 15),
+                        hintText: "XXXX - XXXX - XXXX - XXXX"),
+                    onFieldSubmitted: (value) {},
+                    validator: (value) {
+                      if (value.isEmpty) return Translations.emptyWarningLabel(widget.locale);
+                      _cardNumber = value;
+                      return null;
+                    },
+                  )),
+              Container(
+                height: 10,
+              ),
+              ListTile(
+                title: Text(
+                  Translations.expirationMonthLabel(widget.locale),
+                  style: TextStyle(fontSize: 12),
+                ),
+                subtitle: GestureDetector(
+                  child: Container(
+                      height: 45,
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                                _months[_selectedMonth]),
                           ),
-                        ),
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext builder) {
-                                return Container(
-                                  child: CupertinoPicker(
-                                    itemExtent: 35.0,
-                                    onSelectedItemChanged: (value) {
-                                      setState(() {
-                                        _selectedYear = value;
-                                      });
-                                    },
-                                    children: _buildYears(),
-                                    looping: true,
-                                    backgroundColor: Colors.white,
-                                  ),
-                                );
-                              });
-                        },
-                      )
-                    ),
-                    ListTile(
-                      title: Text(
-                        Translations.cvvLabel(widget.locale),
-                        style: TextStyle(fontSize: 12),
+                          Icon(Icons.arrow_drop_down)
+                        ],
+                      )),
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext builder) {
+                          return Container(
+                            child: CupertinoPicker(
+                              itemExtent: 35.0,
+                              onSelectedItemChanged:
+                                  (value) {
+                                setState(() {
+                                  _selectedMonth = value;
+                                });
+                              },
+                              children: _buildMonths(),
+                              looping: true,
+                              backgroundColor:
+                              Colors.white,
+                            ),
+                          );
+                        });
+                  },
+                ),
+              ),
+              ListTile(
+                  title: Text(
+                    Translations.expirationYearLabel(widget.locale),
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  subtitle: GestureDetector(
+                    child: Container(
+                      height: 45,
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: Text(
+                                  "${_years[_selectedYear]}")),
+                          Icon(Icons.arrow_drop_down)
+                        ],
                       ),
-                      subtitle: TextFormField(
-                        cursorColor: Colors.black,
-                        textInputAction: TextInputAction.done,
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(hintText: "XXX"),
-                        onFieldSubmitted: (value) {},
-                        validator: (value) {
-                          if (value.isEmpty) return Translations.emptyWarningLabel(widget.locale);
-                          _cvv = value;
-                          return null;
-                        },
-                      ), //
-                    )
-                  ],
-                )),
-          )),
-        ],
-      ),
+                    ),
+                    onTap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext builder) {
+                            return Container(
+                              child: CupertinoPicker(
+                                itemExtent: 35.0,
+                                onSelectedItemChanged: (value) {
+                                  setState(() {
+                                    _selectedYear = value;
+                                  });
+                                },
+                                children: _buildYears(),
+                                looping: true,
+                                backgroundColor: Colors.white,
+                              ),
+                            );
+                          });
+                    },
+                  )
+              ),
+              ListTile(
+                title: Text(
+                  Translations.cvvLabel(widget.locale),
+                  style: TextStyle(fontSize: 12),
+                ),
+                subtitle: TextFormField(
+                  cursorColor: Colors.black,
+                  textInputAction: TextInputAction.done,
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(hintText: "XXX"),
+                  onFieldSubmitted: (value) {},
+                  validator: (value) {
+                    if (value.isEmpty) return Translations.emptyWarningLabel(widget.locale);
+                    _cvv = value;
+                    return null;
+                  },
+                ), //
+              )
+            ],
+          ))
     );
   }
 
-  bool getInfo(CulqiCard _card) {
+  bool setInfoOn(CulqiCard _card) {
     if(!mounted) return false;
 
     if(_card == null) return false;
@@ -205,8 +187,8 @@ class CulqiPaymentState extends State<CulqiPayment> {
 
     _card.cardNumber = _cardNumber;
     _card.cvv = _cvv;
-    _card.expirationMonth = _selectedMonth;
-    _card.expirationYear = _selectedYear;
+    _card.expirationMonth = _selectedMonth+1;
+    _card.expirationYear = _years[_selectedYear];
     return true;
   }
 }

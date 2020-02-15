@@ -46,7 +46,6 @@ class CulqiCard{
     if((expirationMonth<1) || (expirationMonth>12)) return false;
 
     DateTime now = DateTime.now();
-
     if(isCardYearValid()){
       if(expirationYear == now.year){
         if(expirationMonth >= now.month) {
@@ -56,7 +55,7 @@ class CulqiCard{
         return true;
       }
     }else{
-      return true;
+      return false;
     }
 
     return false;

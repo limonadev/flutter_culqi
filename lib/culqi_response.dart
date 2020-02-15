@@ -32,7 +32,8 @@ class CulqiError extends CulqiResponse{
   String toString() {
     return  'Error obtaining Token from Culqi:\n'
             'ErrorCode: $_errorCode\n'
-            'ErrorMessage: $_errorMessage';
+            'ErrorMessage: $_errorMessage\n'
+            'ErrorType: $_errorType';
   }
 }
 
