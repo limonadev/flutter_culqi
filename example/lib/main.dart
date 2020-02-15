@@ -64,10 +64,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  GlobalKey _onBodyKey = GlobalKey();
+  GlobalKey _onDialogKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CulqiPayment(widget.card)
+      body: CulqiPayment(_onBodyKey),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showDialog,
+        child: Icon(Icons.credit_card),
+      ),
     );
   }
 
@@ -76,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (context){
         return AlertDialog(
-          content: CulqiPayment(widget.card),
+          content: CulqiPayment(_onDialogKey),
         );
       }
     );

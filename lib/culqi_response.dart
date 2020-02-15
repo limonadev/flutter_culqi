@@ -24,9 +24,9 @@ class CulqiError extends CulqiResponse{
     _errorCode = errorCode;
   }
 
-  get errorType     => _errorType;
-  get errorCode     => _errorCode;
-  get errorMessage  => _errorMessage;
+  ErrorType get errorType     => _errorType;
+  int get errorCode     => _errorCode;
+  String get errorMessage  => _errorMessage;
 
   @override
   String toString() {
@@ -44,7 +44,7 @@ class CulqiToken extends CulqiResponse{
     _token = response['id'];
   }
 
-  get token => _token;
+  String get token => _token;
 
   @override
   String toString() {
