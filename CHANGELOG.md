@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
+## 0.5.0
 
-* TODO: Describe initial release.
+- Initial version, created by Limonadev.
+- Support for create token from Culqi
+- Provides the CulqiPayment widget
