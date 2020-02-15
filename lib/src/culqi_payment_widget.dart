@@ -33,6 +33,7 @@ class CulqiPaymentState extends State<CulqiPayment> {
   void initState() {
     _months = Translations.months(widget.locale);
     _years = widget.years;
+    super.initState();
   }
 
   List<Widget> _buildMonths() {
