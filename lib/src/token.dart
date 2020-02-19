@@ -14,8 +14,8 @@ class CulqiTokenizer{
   CulqiTokenizer(this._card);
 
   Future<CulqiResponse> getToken({@required String publicKey}) async{
-    if(publicKey==null) return CulqiError.fromType(ErrorType.InvalidKey, errorMessage: 'No public key given');
-    if(!_card.isValid()) return CulqiError.fromType(ErrorType.InvalidCard, errorMessage: 'Some value on the card is incorrect');
+    if(publicKey==null) return CulqiError.fromType(CulqiErrorType.ClientInvalidKey, errorMessage: 'No public key given');
+    //if(!_card.isValid()) return CulqiError.fromType(CulqiErrorType.ClientInvalidCard, errorMessage: 'Some value on the card is incorrect');
 
     Map<String, dynamic> body = {
       'card_number'       : _card.cardNumber,
@@ -36,9 +36,9 @@ class CulqiTokenizer{
       response = await http.post(tokenUrl, body: json.encode(body), headers: headers);
     }catch (e){
       print('Exception ocurred: ${e.runtimeType}');
-      return CulqiError.fromType(ErrorType.ExceptionTrowed, errorMessage: e.toString(), errorCode: -2, exception: e);
+      return CulqiError.fromType(CulqiErrorType.ExceptionTrowed, errorMessage: e.toString(), errorCode: -2, exception: e);
     }
-
+    print(response.body);
     if(response.statusCode == 201) return CulqiToken.fromJson(json.decode(response.body));
     else return CulqiError.fromJson(json.decode(response.body), response.statusCode);
   }

@@ -1,6 +1,6 @@
 name: flutter_culqi
 description: A Flutter package to integrate Culqi API to Android/iOS apps allowing the creation of tokens.
-version: 0.5.1
+version: 0.5.2
 author: limonadev <limonadev@whiteleaf.dev>
 homepage: https://github.com/limonadev/flutter_culqi
 

@@ -6,7 +6,7 @@ A [Flutter Package]() to allow the integration of Android/iOS apps with the [Cul
 
 Add the package to pubspec.yaml:
 ```dart
-flutter_culqi : ^0.5.0
+flutter_culqi : ^0.5.2
 ```
 
 Import and use it! :)
